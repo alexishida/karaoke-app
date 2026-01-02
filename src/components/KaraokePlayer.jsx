@@ -2,6 +2,7 @@ import { useQueueStore } from "../store/queueStore"
 import { useUIStore } from "../store/uiStore"
 import { useState, useRef, useEffect } from "react"
 import YouTubePlayer from "./YouTubePlayer"
+import VideoPlayer from "./VideoPlayer"
 import { playSound } from "../hooks/useSound"
 import { XCircle, Maximize2 } from "lucide-react"
 
@@ -34,8 +35,10 @@ export default function KaraokePlayer() {
   const playerRef = useRef(null)
   const containerRef = useRef(null)
 
-  const videoId =
-    current && !phase ? extractVideoId(current.youtubeUrl) : null
+  const url = current?.url || null
+  const isLocalVideo = url && /\.(mp4|webm|ogg)(\?.*)?$/i.test(url)
+  const videoId = !isLocalVideo && current && !phase ? extractVideoId(url) : null
+  const videoSrc = isLocalVideo && current && !phase ? url : null
 
   // 🎯 ÚNICO LUGAR QUE CONTROLA FULLSCREEN STATE
   useEffect(() => {
@@ -136,7 +139,15 @@ export default function KaraokePlayer() {
       )}
 
       {/* PLAYER */}
-      {!phase && videoId && (
+      {!phase && isLocalVideo && videoSrc && (
+        <VideoPlayer
+          ref={playerRef}
+          src={videoSrc}
+          onEnd={finishSong}
+        />
+      )}
+
+      {!phase && !isLocalVideo && videoId && (
         <YouTubePlayer
           ref={playerRef}
           videoId={videoId}

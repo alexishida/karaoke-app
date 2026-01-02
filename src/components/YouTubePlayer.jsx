@@ -37,7 +37,7 @@ const YouTubePlayer = forwardRef(function YouTubePlayer(
         height: "100%",
         playerVars: {
           autoplay: 1,
-          controls: 1,          // ✅ controles padrão
+          controls: 1,          //  controles padrão
           rel: 0,               // reduz sugestões externas
           modestbranding: 1,    // branding discreto
           playsinline: 1
