@@ -6,8 +6,22 @@ import { playSound } from "../hooks/useSound"
 import { XCircle, Maximize2 } from "lucide-react"
 
 function extractVideoId(url) {
-  const match = url.match(/v=([^&]+)/)
-  return match ? match[1] : null
+  if (!url) return null
+
+  const s = String(url)
+  const patterns = [
+    /v=([^&]+)/, // https://www.youtube.com/watch?v=VIDEO
+    /youtu\.be\/([^?&]+)/, // https://youtu.be/VIDEO
+    /embed\/([^?&]+)/, // https://www.youtube.com/embed/VIDEO
+    /^([A-Za-z0-9_-]{11})$/ // plain video id
+  ]
+
+  for (const re of patterns) {
+    const match = s.match(re)
+    if (match) return match[1]
+  }
+
+  return null
 }
 
 export default function KaraokePlayer() {

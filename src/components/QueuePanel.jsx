@@ -15,7 +15,7 @@ export default function QueuePanel() {
           key={m.id}
           className="flex justify-between items-center bg-neutral-800 p-3 rounded-xl mb-2"
         >
-          <span>{i === 0 ? "▶️ " : ""}{m.titulo}</span>
+          <span>{i === 0 ? "▶️ " : ""}{m.id} {m.artista} - {m.titulo}</span>
           <div className="flex gap-3">
             {i === 0 && <button onClick={nextMusic}><SkipForward /></button>}
             <button onClick={() => removeFromQueue(m.id)}><Trash2 /></button>

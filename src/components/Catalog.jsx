@@ -7,11 +7,14 @@ export default function Catalog() {
   const [search, setSearch] = useState("")
   const addToQueue = useQueueStore((s) => s.addToQueue)
 
-  const filtered = musicas.filter((m) =>
-    m.titulo.toLowerCase().includes(search.toLowerCase()) ||
-    m.artista.toLowerCase().includes(search.toLowerCase()) ||
-    m.id.toString() === search
-  )
+  const filtered = musicas.filter((m) => {
+    const q = search.trim().toLowerCase()
+    const isNumber = /^\d+$/.test(q)
+
+    return (m.titulo || "").toLowerCase().includes(q) ||
+           (m.artista || "").toLowerCase().includes(q) ||
+           (isNumber && (String(m.id).includes(q) || String(m.legacyId || '').includes(q)))
+  })
 
   return (
     <div className="mt-6">
@@ -32,8 +35,8 @@ export default function Catalog() {
             onClick={() => addToQueue(m)}
             className="bg-gradient-to-r from-pink-500 to-purple-600 p-4 rounded-2xl text-left"
           >
-            <p className="text-xl font-bold">#{m.id} {m.titulo}</p>
-            <p className="text-sm opacity-80">{m.artista}</p>
+            <p className="text-xl font-bold">{m.id}</p>
+            <p className="text-sm opacity-80">{m.artista} - {m.titulo}</p>
           </button>
         ))}
       </div>
