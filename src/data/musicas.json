@@ -1,0 +1,7 @@
+[
+  { "id": 1, "categoria": "Rock", "artista": "Queen", "titulo": "Bohemian Rhapsody", "letra": "...", "youtubeUrl": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ" },
+  { "id": 2, "categoria": "Rock", "artista": "Bon Jovi", "titulo": "Livin' on a Prayer", "letra": "...", "youtubeUrl": "https://www.youtube.com/watch?v=lDK9QqIzhwk" },
+  { "id": 3, "categoria": "Pop", "artista": "Michael Jackson", "titulo": "Billie Jean", "letra": "...", "youtubeUrl": "https://www.youtube.com/watch?v=Zi_XLOBDo_Y" },
+  { "id": 4, "categoria": "Sertanejo", "artista": "Chitãozinho & Xororó", "titulo": "Evidências", "letra": "...", "youtubeUrl": "https://www.youtube.com/watch?v=ePjtnSPFWK8" },
+  { "id": 5, "categoria": "Pop", "artista": "Adele", "titulo": "Someone Like You", "letra": "...", "youtubeUrl": "https://www.youtube.com/watch?v=hLQl3WQQoQ0" }
+]
